@@ -10,6 +10,8 @@ def wombat(state, time_left):
 
     arena = state['arena']
     local_coords = Coordinates(*[int(x) for x in state['local-coords']])
+    global_coords = Coordinates(*[int(x) for x in state['global-coords']])
+    global_dimensions = Coordinates(*[int(x) for x in state['global-dimensions']])
     hp = arena[local_coords.row][local_coords.col]['contents']['hp']
 
     action = None
@@ -17,7 +19,7 @@ def wombat(state, time_left):
 
     saved_state = state.get('saved-state', None)
 
-    if saved_state and saved_state.get('prev_action', None) is 'turn':
+    if saved_state and saved_state.get('prev_action', None) == 'turn':
         action = 'shoot'
     else:
         action = 'turn'
