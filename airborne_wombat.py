@@ -1,6 +1,7 @@
-import json
 
 def wombat(state, time_left):
+    import json
+
     action = 'turn'
     metadata = {'direction': 'right'}
     state = {'hello': 'world'}
