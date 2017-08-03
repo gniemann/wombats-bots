@@ -11,11 +11,15 @@ def wombat(state, time_left):
     MOVE = 'move'
     TURN = 'turn'
     SMOKE = 'smoke'
+    FOOD = 'food'
 
     actions = ['turn', 'move', 'shoot', 'smoke']
     turn_directions = ['right', 'left', 'about-face']
     smoke_directions = ['forward', 'behind', 'left', 'right']
-    orientations = ['n', 's', 'e', 'w']
+    orientations = {'n': 0,
+                    'e': 1,
+                    's': 2,
+                    'w': 3}
 
     #functions
     def check_for_enemy(arena, row, col):
@@ -43,6 +47,18 @@ def wombat(state, time_left):
 
         contents = arena[row][col]['contents']
         return contents.get('type', None)
+
+    def get_contents(arena, row, col):
+        return arena[row][col]['contents']['type']
+
+    def adj_items(arena, coords):
+        row = coords.row
+        col = coords.col
+        return [get_contents(arena, row - 1, col),
+                get_contents(arena, row, col + 1),
+                get_contents(arena, row + 1, col),
+                get_contents(arena, row, col - 1)]
+
 
     arena = state['arena']
     local_coords = Coordinates(*[int(x) for x in state['local-coords']])
@@ -83,12 +99,25 @@ def wombat(state, time_left):
                 break
 
     if not action:
-        if in_front == 'food':
+        next_to = adj_items(arena, local_coords)
+        if next_to[orientations[orientation]] == FOOD:
             action = MOVE
-        elif in_front != 'open':
-            #turn somewhere
-            action = 'turn'
-            direction = random.choice(turn_directions)
+        elif FOOD in next_to:
+            action = TURN
+
+            dir_to_food = 0
+            while next_to[dir_to_food] != FOOD:
+                dir_to_food = dir_to_food + 1
+
+            current_orientation = orientations[orientation]
+
+            if dir_to_food == current_orientation + 1 % 4:
+                direction = 'right'
+            elif dir_to_food == current_orientation - 1 % 4:
+                direction = 'left'
+            else:
+                direction = 'about-face'
+
             metadata['direction'] = direction
         else:
             move_or_turn = [MOVE, TURN]
