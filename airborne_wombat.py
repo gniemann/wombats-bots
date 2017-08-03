@@ -38,7 +38,7 @@ def wombat(state, time_left):
         else:
             col = col - 1
 
-        if row < 0 or row > len(arena) or col < 0 or col > len(arena):
+        if row < 0 or row >= len(arena) or col < 0 or col >= len(arena):
             return None
 
         contents = arena[row][col]
@@ -54,6 +54,7 @@ def wombat(state, time_left):
     orientation = me['orientation']
     action = None
     metadata = {}
+    in_front = whats_in_front(arena, local_coords, orientation)
 
     # first see if we can blaze something
     if orientation == 'n':
@@ -82,7 +83,6 @@ def wombat(state, time_left):
                 break
 
     if not action:
-        in_front = whats_in_front(arena, local_coords, orientation)
         if in_front == 'food':
             action = MOVE
         elif in_front != 'open':
@@ -98,13 +98,11 @@ def wombat(state, time_left):
                 metadata['direction'] = direction
 
 
-        saved_state = state.get('saved-state', None)
-
-
     save_state = {'coords': local_coords,
                   'hp': hp,
                   'prev_action': action,
-                  'prev_orientation': orientation
+                  'prev_orientation': orientation,
+                  'in_front': in_front
                   }
 
     command = { 'command': {
