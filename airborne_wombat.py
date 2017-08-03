@@ -27,6 +27,8 @@ def wombat(state, time_left):
         direction = random.choice(turn_directions)
         metadata['direction'] = direction
 
+    state['prev_action'] = action
+
     command = { 'command': {
         'action': action,
         'metadata': metadata,
