@@ -9,15 +9,12 @@ def wombat(state, time_left):
     smoke_directions = ['forward', 'behind', 'left', 'right']
 
     arena = state['arena']
-    local_coords = arena['local-coords']
-    #local_coords = Coordinates((int(x) for x in arena['local-coords']))
-    #hp = arena[local_coords.row][local_coords.col]['contents']['hp']
+    local_coords = Coordinates((int(x) for x in state['local-coords']))
+    hp = arena[local_coords.row][local_coords.col]['contents']['hp']
 
     action = None
     metadata = {}
     state = {'coords': local_coords, 'hp': hp }
-
-
 
     saved_state = state['saved-state']
 
