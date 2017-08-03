@@ -111,9 +111,9 @@ def wombat(state, time_left):
 
             current_orientation = orientations[orientation]
 
-            if dir_to_food == current_orientation + 1 % 4:
+            if dir_to_food == (current_orientation + 1) % 4:
                 direction = 'right'
-            elif dir_to_food == current_orientation - 1 % 4:
+            elif dir_to_food == (current_orientation - 1) % 4:
                 direction = 'left'
             else:
                 direction = 'about-face'
