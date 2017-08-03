@@ -1,13 +1,17 @@
+import json
+
 def wombat(state, time_left):
-    # Note that the function name MUST be wombat
-    return {
-        'command': {
-            'action': 'turn',
-            'metadata': {
-                'direction': 'right'
-            }
+    action = 'turn'
+    metadata = {'direction': 'right'}
+    state = {'hello': 'world'}
+
+
+    command = { 'command': {
+        'action': action,
+        'metadata': metadata,
         },
-        'state': {
-            'hello': 'world'
-        }
+        'state': state
     }
+
+    return json.dumps(command)
+
