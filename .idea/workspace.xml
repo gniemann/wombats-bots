@@ -28,8 +28,8 @@
       <file leaf-file-name="airborne_wombat.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/airborne_wombat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="64">
-              <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+            <state relative-caret-position="165">
+              <caret line="11" column="70" lean-forward="false" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="70" />
               <folding />
             </state>
           </provider>
@@ -347,7 +347,21 @@
       <option name="project" value="LOCAL" />
       <updated>1501782819261</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="Add prev action">
+      <created>1501782934682</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1501782934682</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Fix coordinates">
+      <created>1501783097578</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1501783097578</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -392,7 +406,8 @@
     <MESSAGE value="Fix subscript" />
     <MESSAGE value="Fix key" />
     <MESSAGE value="Add prev action" />
-    <option name="LAST_COMMIT_MESSAGE" value="Add prev action" />
+    <MESSAGE value="Fix coordinates" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix coordinates" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -417,8 +432,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/airborne_wombat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="11" column="40" lean-forward="false" selection-start-line="11" selection-start-column="40" selection-end-line="11" selection-end-column="40" />
+        <state relative-caret-position="165">
+          <caret line="11" column="70" lean-forward="false" selection-start-line="11" selection-start-column="70" selection-end-line="11" selection-end-column="70" />
           <folding />
         </state>
       </provider>
