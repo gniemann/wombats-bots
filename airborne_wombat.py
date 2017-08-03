@@ -26,7 +26,8 @@ def wombat(state, time_left):
 
     save_state = {'coords': local_coords,
                   'hp': hp,
-                  'prev_action': action}
+                  'prev_action': action,
+                  'old_state': state}
 
     command = { 'command': {
         'action': action,
