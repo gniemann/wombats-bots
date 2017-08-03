@@ -28,7 +28,7 @@
       <file leaf-file-name="airborne_wombat.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/airborne_wombat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="375">
+            <state relative-caret-position="294">
               <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding />
             </state>
@@ -382,7 +382,14 @@
       <option name="project" value="LOCAL" />
       <updated>1501783485391</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Fix saved-state">
+      <created>1501783745573</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1501783745573</updated>
+    </task>
+    <option name="localTasksCounter" value="18" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -454,7 +461,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/airborne_wombat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
+        <state relative-caret-position="294">
           <caret line="25" column="0" lean-forward="true" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding />
         </state>

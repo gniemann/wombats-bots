@@ -32,7 +32,7 @@ def wombat(state, time_left):
         'action': action,
         'metadata': metadata,
         },
-        'state': state
+        'state': save_state
     }
 
 
