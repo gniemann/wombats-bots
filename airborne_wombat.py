@@ -22,32 +22,6 @@ def wombat(state, time_left):
                     'w': 3}
 
     #functions
-    def check_for_enemy(arena, row, col):
-        contents = arena[row][col]
-        other_wombat = contents.get('type', None)
-        if other_wombat == 'zakano' or other_wombat == 'wombat' or other_wombat == 'wood-barrier':
-            return True
-        else:
-            return False
-
-    def whats_in_front(arena, coords, orientation):
-        row = coords.row
-        col = coords.col
-        if orientation == 'n':
-            row = row - 1
-        elif orientation == 's':
-            row = row + 1
-        elif orientation == 'e':
-            col = col + 1
-        else:
-            col = col - 1
-
-        if row < 0 or row >= len(arena) or col < 0 or col >= len(arena):
-            return None
-
-        contents = arena[row][col]['contents']
-        return contents.get('type', None)
-
     def get_contents(arena, row, col):
         return arena[row][col]['contents']['type']
 
@@ -58,6 +32,10 @@ def wombat(state, time_left):
                 get_contents(arena, row, col + 1),
                 get_contents(arena, row + 1, col),
                 get_contents(arena, row, col - 1)]
+
+    def check_for_enemy(arena, row, col):
+        contents = get_contents(arena, row, col)
+        return contents == 'zakano' or contents == 'wombat' or contents == 'wood-barrier'
 
 
     arena = state['arena']
@@ -71,7 +49,9 @@ def wombat(state, time_left):
     action = None
     metadata = {}
     direction = None
-    in_front = whats_in_front(arena, local_coords, orientation)
+    next_to = adj_items(arena, local_coords)
+    current_orientation = orientations[orientation]
+    in_front = next_to[current_orientation]
 
     # first see if we can blaze something
     if orientation == 'n':
@@ -100,10 +80,10 @@ def wombat(state, time_left):
                 break
 
     if not action:
-        next_to = adj_items(arena, local_coords)
-        current_orientation = orientations[orientation]
-        if next_to[current_orientation] == FOOD:
+        if in_front == FOOD:
             action = MOVE
+        elif in_front == 'wood-barrier':
+            action = SHOOT
         elif FOOD in next_to:
             action = TURN
 
