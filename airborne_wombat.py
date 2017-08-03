@@ -8,7 +8,7 @@ def wombat(state, time_left):
 
     action = None
     metadata = {}
-    state = {}
+    state = {'state': state}
 
     action = random.choice(actions)
 
