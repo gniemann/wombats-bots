@@ -18,7 +18,7 @@ def wombat(state, time_left):
     def check_for_enemy(arena, row, col):
         contents = arena[row][col]
         other_wombat = contents.get('type', None)
-        if other_wombat == 'zakano' or other_wombat == 'wombat':
+        if other_wombat == 'zakano' or other_wombat == 'wombat' or other_wombat == 'wood-barrier':
             return True
         else:
             return False
