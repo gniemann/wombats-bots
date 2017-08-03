@@ -70,6 +70,7 @@ def wombat(state, time_left):
     orientation = me['orientation']
     action = None
     metadata = {}
+    direction = None
     in_front = whats_in_front(arena, local_coords, orientation)
 
     # first see if we can blaze something
@@ -100,7 +101,8 @@ def wombat(state, time_left):
 
     if not action:
         next_to = adj_items(arena, local_coords)
-        if next_to[orientations[orientation]] == FOOD:
+        current_orientation = orientations[orientation]
+        if next_to[current_orientation] == FOOD:
             action = MOVE
         elif FOOD in next_to:
             action = TURN
@@ -109,8 +111,6 @@ def wombat(state, time_left):
             while next_to[dir_to_food] != FOOD:
                 dir_to_food = dir_to_food + 1
 
-            current_orientation = orientations[orientation]
-
             if dir_to_food == (current_orientation + 1) % 4:
                 direction = 'right'
             elif dir_to_food == (current_orientation - 1) % 4:
@@ -118,14 +118,16 @@ def wombat(state, time_left):
             else:
                 direction = 'about-face'
 
-            metadata['direction'] = direction
+        elif next_to[current_orientation] != 'open':
+            action = TURN
+            direction = random.choice(turn_directions)
         else:
             move_or_turn = [MOVE, TURN]
             action = random.choice(move_or_turn)
-            if action == MOVE:
-                direction = random.choice(turn_directions)
-                metadata['direction'] = direction
 
+
+    if action == TURN:
+        metadata['direction'] = direction
 
     save_state = {'coords': local_coords,
                   'hp': hp,
