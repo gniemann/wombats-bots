@@ -41,7 +41,7 @@ def wombat(state, time_left):
         if row < 0 or row >= len(arena) or col < 0 or col >= len(arena):
             return None
 
-        contents = arena[row][col]
+        contents = arena[row][col]['contents']
         return contents.get('type', None)
 
     arena = state['arena']
