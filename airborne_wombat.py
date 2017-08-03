@@ -16,7 +16,7 @@ def wombat(state, time_left):
     metadata = {}
     state = {'coords': local_coords, 'hp': hp }
 
-    saved_state = state['saved-state']
+    saved_state = state['saved-state'] if 'saved-state' in state else None
 
     if saved_state and saved_state['prev_action'] is 'turn':
         action = 'shoot'
