@@ -1,7 +1,10 @@
 
 def wombat(state, time_left):
     import random
+    import time
     from collections import namedtuple
+
+    random.seed(time.time())
 
     Coordinates = namedtuple('Coordinates', ('row', 'col'))
     SHOOT = 'shoot'
@@ -101,6 +104,7 @@ def wombat(state, time_left):
     save_state = {'coords': local_coords,
                   'hp': hp,
                   'prev_action': action,
+                  'prev_orientation': orientation
                   }
 
     command = { 'command': {
