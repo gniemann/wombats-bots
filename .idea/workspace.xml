@@ -28,8 +28,8 @@
       <file leaf-file-name="airborne_wombat.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/airborne_wombat.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="196">
-              <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+            <state relative-caret-position="333">
+              <caret line="103" column="18" lean-forward="true" selection-start-line="103" selection-start-column="18" selection-end-line="103" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -417,7 +417,14 @@
       <option name="project" value="LOCAL" />
       <updated>1501784378547</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="Add bot logic">
+      <created>1501785615113</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1501785615113</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="ToolWindowManager">
@@ -464,7 +471,8 @@
     <MESSAGE value="Add prev action" />
     <MESSAGE value="Fix coordinates" />
     <MESSAGE value="Fix saved-state" />
-    <option name="LAST_COMMIT_MESSAGE" value="Fix saved-state" />
+    <MESSAGE value="Add bot logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add bot logic" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -489,8 +497,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/airborne_wombat.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="196">
-          <caret line="34" column="13" lean-forward="false" selection-start-line="34" selection-start-column="13" selection-end-line="34" selection-end-column="13" />
+        <state relative-caret-position="333">
+          <caret line="103" column="18" lean-forward="true" selection-start-line="103" selection-start-column="18" selection-end-line="103" selection-end-column="18" />
           <folding />
         </state>
       </provider>
