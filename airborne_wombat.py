@@ -125,6 +125,9 @@ def wombat(state, time_left):
             move_or_turn = [MOVE, TURN]
             action = random.choice(move_or_turn)
 
+            if action == TURN:
+                direction = random.choice(turn_directions)
+
 
     if action == TURN:
         metadata['direction'] = direction
