@@ -14,18 +14,19 @@ def wombat(state, time_left):
 
     action = None
     metadata = {}
-    state = {'coords': local_coords, 'hp': hp }
 
-    saved_state = state['saved-state'] if 'saved-state' in state else None
+    saved_state = state.get('saved-state', None)
 
-    if saved_state and saved_state['prev_action'] is 'turn':
+    if saved_state and saved_state.get('prev_action', None) is 'turn':
         action = 'shoot'
     else:
         action = 'turn'
         direction = random.choice(turn_directions)
         metadata['direction'] = direction
 
-    state['prev_action'] = action
+    save_state = {'coords': local_coords,
+                  'hp': hp,
+                  'prev_action': action}
 
     command = { 'command': {
         'action': action,
