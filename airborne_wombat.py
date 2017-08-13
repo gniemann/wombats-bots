@@ -85,10 +85,16 @@ def wombat(state, time_left):
         return command(Actions.shoot)
 
     def turn(direction):
-        return command(Actions.turn, direction)
+        metadata = {
+            'direction': direction
+        }
+        return command(Actions.turn, metadata)
 
     def smoke(direction):
-        return command(Actions.smoke, direction)
+        metadata = {
+            'direction': direction
+        }
+        return command(Actions.smoke, metadata)
 
     def move():
         return command(Actions.move)
@@ -115,6 +121,14 @@ def wombat(state, time_left):
             'state': save_state
         }
 
+    def get_turn_direction(currentOrientation, requiredOrientation):
+        if (current_orientation + 1) % 4 == requiredOrientation:
+            return TurnDirections.right
+        elif (current_orientation - 1) % 4 == requiredOrientation:
+            return TurnDirections.left
+        else:
+            return TurnDirections.behind
+
     random.seed(time.time())
     arena = state['arena']
     local_coords = Point(*[int(x) for x in state['local-coords']])
@@ -139,7 +153,44 @@ def wombat(state, time_left):
             (orientation == 'w' and enemy_row == local_coords.row and enemy_col < local_coords.col)):
             return commandToReturn(Actions.shoot, orientation, in_front)
 
-    # next see if we're about to be blazed
+    # next see if an enemy is pointed at us - if so move, if not turn towards them to blaze em next time
+    for (enemy_row, enemy_col) in enemies:
+        enemy = get_contents(arena, enemy_row, enemy_col)
+        enemy_orientation = enemy['orientation']
+        if enemy_row == local_coords.row:
+            #east or west
+            if enemy_col < local_coords.col:
+                #enemy is west
+                if enemy_orientation == 'e':
+                    #pointed at us
+                    return commandToReturn(Actions.move, orientation, in_front)
+                else:
+                    direction = get_turn_direction(current_orientation, orientations['w'])
+                    return commandToReturn(Actions.turn, orientations, in_front, direction)
+            else :
+                #enemy is east
+                if enemy_orientation == 'w':
+                    return  commandToReturn(Actions.move, orientation, in_front)
+                else:
+                    direction = get_turn_direction(current_orientation, orientations['e'])
+                    return commandToReturn(Actions.turn, orientation, in_front, direction)
+        else:
+            #north or south
+            if enemy_row < local_coords.row:
+                #enemy is north
+                if enemy_orientation == 's':
+                    return commandToReturn(Actions.move, orientations, in_front)
+                else:
+                    direction = get_turn_direction(current_orientation, orientations['n'])
+                    return commandToReturn(Actions.turn, orientation, in_front, direction)
+            else:
+                #enemy is south
+                if enemy_orientation == 'n':
+                    return commandToReturn(Actions.move, orientation, in_front)
+                else:
+                    direction = get_turn_direction(current_orientation, orientations['s'])
+                    return commandToReturn(Actions.turn, orientation, in_front, direction)
+
 
 
     if in_front == Items.food:
@@ -149,12 +200,7 @@ def wombat(state, time_left):
         while next_to[dir_to_food] != Items.food:
             dir_to_food = dir_to_food + 1
 
-        if dir_to_food == (current_orientation + 1) % 4:
-            direction = TurnDirections.right
-        elif dir_to_food == (current_orientation - 1) % 4:
-            direction = TurnDirections.left
-        else:
-            direction = TurnDirections.behind
+        direction = get_turn_direction(current_orientation, dir_to_food)
 
         return commandToReturn(Actions.turn, orientation, in_front, direction)
     elif in_front == Items.wood_barrier:
