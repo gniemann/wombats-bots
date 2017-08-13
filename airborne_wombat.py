@@ -45,6 +45,9 @@ def wombat(state, time_left):
     def get_contents(arena, row, col):
         return arena[row][col]['contents']['type']
 
+    def get_characteristics(arena, row, col):
+        return arena[row][col]['contents']
+
     def adj_items(arena, coords):
         row = coords.row
         col = coords.col
@@ -155,7 +158,7 @@ def wombat(state, time_left):
 
     # next see if an enemy is pointed at us - if so move, if not turn towards them to blaze em next time
     for (enemy_row, enemy_col) in enemies:
-        enemy = get_contents(arena, enemy_row, enemy_col)
+        enemy = get_characteristics(arena, enemy_row, enemy_col)
         enemy_orientation = enemy['orientation']
         if enemy_row == local_coords.row:
             #east or west
