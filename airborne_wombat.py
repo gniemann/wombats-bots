@@ -72,7 +72,7 @@ def wombat(state, time_left):
         return enemy_coords
 
     # action commands
-    def command(action, metadata):
+    def command(action, metadata=None):
         if not metadata:
             metadata = {}
         return {
