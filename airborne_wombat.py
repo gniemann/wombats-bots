@@ -76,11 +76,10 @@ def wombat(state, time_left):
         if not metadata:
             metadata = {}
         return {
-            'command': {
-                'action': action,
-                'metadata': metadata
-            }
+            'action': action,
+            'metadata': metadata
         }
+
 
     def shoot():
         return command(Actions.shoot)
