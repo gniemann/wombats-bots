@@ -3,53 +3,36 @@ def wombat(state, time_left):
     import random
     import time
     from collections import namedtuple
-    from enum import Enum
 
-    class Actions(Enum):
+    class Actions():
         shoot = 'shoot'
         move = 'move'
         turn = 'turn'
         smoke = 'smoke'
 
-        def __str__(self):
-            return self.value
-
-    class TurnDirections(Enum):
+    class TurnDirections():
         right = 'right'
         left = 'left'
         behind = 'about-face'
-        forward = 'forward'
-
-        def __str__(self):
-            return self.value
 
         @classmethod
         def random_direction(cls):
-            return random.choice(list(cls))
+            return random.choice([cls.right, cls.left, cls.behind])
 
-    class SmokeDirections(Enum):
+    class SmokeDirections():
         forward = 'forward'
         behind = 'behind'
         left = 'left'
         right = 'right'
 
-        def __str__(self):
-            return self.value
-
         @classmethod
         def random_direction(cls):
-            return random.choice(list(cls))
+            return random.choice([cls.forward, cls.behind, cls.left, cls.right])
 
-    class Items(Enum):
+    class Items():
         food = 'food'
         wood_barrier = 'wood-barrier'
         open = 'open'
-
-        def __str__(self):
-            return self.value
-
-        def __eq__(self, other):
-            return str(self) == str(other)
 
     Point = namedtuple('Point', ('row', 'col'))
 
@@ -187,6 +170,3 @@ def wombat(state, time_left):
             return commandToReturn(action, orientation, in_front)
         elif action == Actions.turn:
             return commandToReturn(action, orientation, in_front, TurnDirections.random_direction())
-
-
-
